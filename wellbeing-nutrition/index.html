@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wellbeing Nutrition — Brand Health Report · Mragy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #f9f8f6;
+    --surface: #ffffff;
+    --border:  #e8e4de;
+    --text:    #1a1814;
+    --muted:   #8a8578;
+    --accent:  #c17f3e;
+    --pos:     #22c55e;
+    --neg:     #ef4444;
+    --warn:    #f59e0b;
+    --neu:     #94a3b8;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; font-size:14px; line-height:1.6; }
+
+  /* ── Header ── */
+  .header { background:var(--surface); border-bottom:1px solid var(--border); padding:28px 48px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .header-left { display:flex; flex-direction:column; gap:4px; }
+  .logo { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .brand-name { font-family:'DM Serif Display',serif; font-size:32px; line-height:1; }
+  .header-meta { font-size:12px; color:var(--muted); }
+  .header-right { display:flex; align-items:center; gap:24px; }
+  .health-score { font-family:'DM Serif Display',serif; font-size:52px; color:#ef4444; line-height:1; white-space:nowrap; }
+  .health-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+  .health-wrap { text-align:right; }
+
+  /* ── Delta row ── */
+  .delta-row { background:#fffdf9; border-bottom:1px solid var(--border); padding:10px 48px; display:flex; gap:24px; align-items:center; font-size:12px; flex-wrap:wrap; }
+  .delta-row-label { color:var(--muted); font-size:10px; letter-spacing:2px; text-transform:uppercase; margin-right:8px; }
+  .delta-item { display:flex; align-items:center; gap:6px; }
+  .delta-item-name { color:var(--muted); }
+  .delta-badge { font-weight:600; font-size:12px; }
+  .card-delta { font-size:11px; margin-top:6px; font-weight:600; }
+
+  /* ── Action Plan Button ── */
+  .ap-btn { background:var(--text); color:#fff; border:none; border-radius:8px; padding:12px 20px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:8px; white-space:nowrap; transition:opacity 0.2s; }
+  .ap-btn:hover { opacity:0.85; }
+
+  /* ── Action Plan Panel ── */
+  .ap-panel { background:#fffdf9; border-bottom:2px solid var(--accent); padding:0 48px; max-height:0; overflow:hidden; transition:max-height 0.5s ease, padding 0.3s ease; }
+  .ap-panel.open { max-height:800px; padding:32px 48px; }
+  .ap-grid { display:grid; grid-template-columns:1fr 1.6fr 1fr; gap:24px; }
+  .ap-section-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:12px; }
+  .ap-pain-cat { font-family:'DM Serif Display',serif; font-size:22px; margin-bottom:6px; }
+  .ap-pain-why { font-size:13px; color:#4a4540; line-height:1.6; margin-bottom:10px; }
+  .ap-pain-impact { font-size:12px; color:var(--muted); font-style:italic; }
+  .ap-urgency { display:inline-block; font-size:10px; font-weight:700; letter-spacing:1px; padding:3px 10px; border-radius:4px; margin-bottom:10px; color:#ef4444; background:#ef444415; border:1px solid #ef444430; }
+  .ap-action { display:flex; gap:12px; margin-bottom:16px; }
+  .ap-action-num { width:24px; height:24px; border-radius:50%; background:var(--text); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+  .ap-action-title { font-size:13px; font-weight:600; margin-bottom:4px; }
+  .ap-action-detail { font-size:12px; color:#4a4540; line-height:1.5; margin-bottom:6px; }
+  .ap-action-tags { display:flex; gap:6px; }
+  .ap-tag { font-size:10px; padding:2px 8px; border-radius:4px; border:1px solid; font-weight:500; }
+  .ap-pri-review { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--neg); border-radius:0 6px 6px 0; padding:10px 12px; margin-bottom:10px; }
+  .ap-pri-cat { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); margin-bottom:4px; font-weight:600; }
+  .ap-pri-text { font-size:12px; font-style:italic; color:#3a3630; margin-bottom:4px; }
+  .ap-pri-why { font-size:11px; color:var(--muted); }
+
+  /* ── Body ── */
+  .body { padding:32px 48px; max-width:1280px; margin:0 auto; }
+  .grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:24px; }
+  .grid-2 { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-bottom:24px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:20px; animation:fadeUp 0.4s ease both; }
+  .card-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:12px; font-weight:600; }
+  .card-value { font-family:'DM Serif Display',serif; font-size:36px; line-height:1; }
+  .card-sub { font-size:12px; color:var(--muted); margin-top:4px; }
+  .stat-pos { border-top:3px solid var(--pos); }
+  .stat-neg { border-top:3px solid var(--neg); }
+  .stat-neu { border-top:3px solid var(--neu); }
+  .stat-mix { border-top:3px solid var(--warn); }
+  .section-title { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); font-weight:600; margin-bottom:16px; display:flex; align-items:center; gap:10px; }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+  .cat-row { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+  .cat-label { width:160px; font-size:12px; flex-shrink:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .cat-track { flex:1; height:6px; background:#f0ede8; border-radius:3px; overflow:hidden; }
+  .cat-bar { height:100%; background:var(--accent); border-radius:3px; transition:width 0.6s ease; }
+  .cat-count { width:40px; text-align:right; font-size:12px; color:var(--muted); flex-shrink:0; }
+  .donut-wrap { display:flex; gap:24px; align-items:center; }
+  .donut-legend { display:flex; flex-direction:column; gap:8px; }
+  .legend-item { display:flex; align-items:center; gap:8px; font-size:12px; }
+  .legend-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .legend-val { color:var(--muted); margin-left:auto; padding-left:12px; }
+  .heatmap-table { width:100%; border-collapse:collapse; font-size:11px; }
+  .heatmap-table th { padding:6px 8px; text-align:center; font-weight:500; color:var(--muted); border-bottom:1px solid var(--border); }
+  .heatmap-table td { padding:5px 8px; text-align:center; border-bottom:1px solid #f5f2ee; }
+  .heatmap-table td.cat-td { text-align:left; font-size:11px; white-space:nowrap; }
+  .hm-cell { display:inline-block; padding:2px 8px; border-radius:3px; font-size:11px; font-weight:500; }
+  .review-filters { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .filter-btn { padding:5px 14px; border-radius:20px; border:1px solid var(--border); background:var(--surface); font-size:11px; cursor:pointer; font-family:'DM Sans',sans-serif; color:var(--muted); transition:all 0.2s; }
+  .filter-btn.active, .filter-btn:hover { background:var(--text); color:#fff; border-color:var(--text); }
+  .review-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
+  .review-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; }
+  .review-card.hidden { display:none; }
+  .review-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+  .review-cat { font-size:10px; letter-spacing:1px; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .review-source { font-size:10px; color:var(--muted); }
+  .review-text { font-size:12px; line-height:1.6; color:#3a3630; margin-bottom:8px; }
+  .review-evidence { font-size:11px; color:var(--neg); font-style:italic; border-left:2px solid var(--neg); padding-left:8px; }
+  .review-meta { display:flex; gap:8px; margin-top:10px; }
+  .sent-badge { font-size:9px; padding:2px 8px; border-radius:10px; font-weight:600; letter-spacing:0.5px; }
+  .sent-Negative { background:#fef2f2; color:var(--neg); }
+  .sent-Mixed    { background:#fffbeb; color:var(--warn); }
+  .sent-Positive { background:#f0fdf4; color:var(--pos); }
+  .sent-Neutral  { background:#f8fafc; color:var(--neu); }
+  .lang-badge { font-size:9px; padding:2px 8px; border-radius:10px; background:#f5f2ee; color:var(--muted); }
+  .pill-row { display:flex; gap:10px; flex-wrap:wrap; }
+  .pill { background:#f5f2ee; border-radius:6px; padding:10px 16px; display:flex; flex-direction:column; gap:2px; }
+  .pill-label { font-size:10px; color:var(--muted); }
+  .pill-val { font-family:'DM Serif Display',serif; font-size:22px; }
+  .footer { border-top:1px solid var(--border); padding:20px 48px; display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-top:40px; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  canvas { max-width:100%; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">Mragy · Brand Health Report</div>
+    <div class="brand-name">Wellbeing Nutrition</div>
+    <div class="header-meta">124 reviews · September 03, 2026 · Reddit + Play Store</div>
+  </div>
+  <div class="header-right">
+    <button class="ap-btn" onclick="toggleActionPlan()">
+      <span>⚡</span> Get Action Plan
+    </button>
+    <div style="display:flex;gap:0;align-items:stretch;border-left:1px solid var(--border);padding-left:32px;">
+      <div style="text-align:center;padding:0 24px;border-right:1px solid var(--border);">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Overall</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:52px;color:#ef4444;line-height:1;">2.6</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;">/ 10</div>
+        <div style="font-size:10px;margin-top:6px;color:#ef4444;">↓ 2.9 below avg for Health & Wellness brands</div>
+      </div>
+      <div style="text-align:center;padding:0 24px;border-right:1px solid var(--border);"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">App</div><div style="font-family:'DM Serif Display',serif;font-size:36px;color:#ef4444;line-height:1;">1.0</div><div style="font-size:11px;color:var(--muted);margin-top:4px;">/ 10</div></div>
+      <div style="text-align:center;padding:0 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Product</div><div style="font-family:'DM Serif Display',serif;font-size:36px;color:#ef4444;line-height:1;">3.1</div><div style="font-size:11px;color:var(--muted);margin-top:4px;">/ 10</div></div>
+    </div>
+
+  </div>
+
+  </div>
+</div>
+
+<!-- Delta row — shows only if yesterday cache exists -->
+
+
+<!-- Action Plan Panel -->
+<div class="ap-panel" id="apPanel">
+  <div class="ap-grid">
+    <div>
+      <div class="ap-section-label">Biggest Pain Right Now</div>
+      <div class="ap-urgency">HIGH URGENCY</div>
+      <div class="ap-pain-cat">App Experience</div>
+      <div class="ap-pain-why">With 82% negative reviews and cart/checkout failures directly blocking purchases, the app is actively destroying revenue for a D2C brand whose core channel is its own platform.</div>
+      <div class="ap-pain-impact">Every checkout bug is a lost sale and pushes customers to Amazon or Flipkart, permanently eroding Wellbeing Nutrition's D2C margin advantage and customer ownership.</div>
+    </div>
+    <div>
+      <div class="ap-section-label">Top 3 Actions This Week</div>
+      
+        <div class="ap-action">
+          <div class="ap-action-num">1</div>
+          <div class="ap-action-body">
+            <div class="ap-action-title">Emergency app bug sprint: fix cart and checkout session failures</div>
+            <div class="ap-action-detail">File P0 tickets this week for two confirmed critical bugs: cart not displaying more than 3 items, and the app forcing re-login after payment confirmation. Ship hotfix within 5 business days and QA on both Android and iOS before release.</div>
+            <div class="ap-action-tags">
+              <span class="ap-tag" style="color:#ef4444;border-color:#ef444420;background:#ef444410">Effort: High</span>
+              <span class="ap-tag" style="color:#ef4444;border-color:#ef444420;background:#ef444410">Impact: High</span>
+            </div>
+          </div>
+        </div>
+        <div class="ap-action">
+          <div class="ap-action-num">2</div>
+          <div class="ap-action-body">
+            <div class="ap-action-title">Activate a dedicated delivery escalation desk for WBN order complaints</div>
+            <div class="ap-action-detail">Create a WhatsApp-based order escalation line specifically for customers who report non-delivery or false delivery notifications, and resolve flagged orders like WBN875128 within 48 hours. Audit your logistics partner's proof-of-delivery process immediately to stop false 'delivered' status updates.</div>
+            <div class="ap-action-tags">
+              <span class="ap-tag" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">Effort: Medium</span>
+              <span class="ap-tag" style="color:#ef4444;border-color:#ef444420;background:#ef444410">Impact: High</span>
+            </div>
+          </div>
+        </div>
+        <div class="ap-action">
+          <div class="ap-action-num">3</div>
+          <div class="ap-action-body">
+            <div class="ap-action-title">Launch an ingredients authenticity campaign to capitalize on strong safety scores</div>
+            <div class="ap-action-detail">Since 9 of 11 Ingredients & Safety reviews are positive, publish a short-form video series this week showing your actual manufacturing and quality-check process — directly countering the 'kidney beans in the bottle' viral risk before it spreads. Pin this content on your app homepage and Instagram.</div>
+            <div class="ap-action-tags">
+              <span class="ap-tag" style="color:#22c55e;border-color:#22c55e20;background:#22c55e10">Effort: Low</span>
+              <span class="ap-tag" style="color:#ef4444;border-color:#ef444420;background:#ef444410">Impact: High</span>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div>
+      <div class="ap-section-label">Priority Reviews to Address</div>
+      
+        <div class="ap-pri-review">
+          <div class="ap-pri-cat">Ingredients & Safety</div>
+          <div class="ap-pri-text">"opened the bottle and found RAJMA (kidney beans). Is this a prank?"</div>
+          <div class="ap-pri-why">A single viral post about foreign objects in your supplement bottle can trigger a brand-ending food safety crisis and regulatory scrutiny.</div>
+        </div>
+        <div class="ap-pri-review">
+          <div class="ap-pri-cat">App Experience</div>
+          <div class="ap-pri-text">"after payment confirmation app still showing items in cart, asking to login again"</div>
+          <div class="ap-pri-why">Post-payment login loops cause customers to assume double-charges and kill trust in your D2C checkout, directly tanking conversion and repeat purchase rates.</div>
+        </div>
+        <div class="ap-pri-review">
+          <div class="ap-pri-cat">Delivery & Shipping</div>
+          <div class="ap-pri-text">"I got false and misleading delivery notifications, I've not received my order"</div>
+          <div class="ap-pri-why">False delivery confirmations are a consumer protection liability and fuel negative word-of-mouth that directly undercuts your D2C credibility versus Amazon.</div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="body">
+
+  <!-- Stat cards with delta -->
+  <div class="grid-4">
+    <div class="card stat-pos">
+      <div class="card-title">Positive</div>
+      <div class="card-value" style="color:var(--pos)">11%</div>
+      <div class="card-sub">14 reviews</div>
+      <div class="card-delta" style="color:#ef4444">▼8% vs 21 Aug</div>
+    </div>
+    <div class="card stat-neg">
+      <div class="card-title">Negative</div>
+      <div class="card-value" style="color:var(--neg)">52%</div>
+      <div class="card-sub">65 reviews</div>
+      <div class="card-delta" style="color:#22c55e">▼7% vs 21 Aug</div>
+    </div>
+    <div class="card stat-neu">
+      <div class="card-title">Neutral</div>
+      <div class="card-value" style="color:var(--neu)">7%</div>
+      <div class="card-sub">9 reviews</div>
+      <div class="card-delta" style="color:#ef4444">▼11% vs 21 Aug</div>
+    </div>
+    <div class="card stat-mix">
+      <div class="card-title">Mixed</div>
+      <div class="card-value" style="color:var(--warn)">6%</div>
+      <div class="card-sub">8 reviews</div>
+      <div class="card-delta" style="color:#ef4444">▲2% vs 21 Aug</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="section-title">Category Breakdown</div>
+      <div id="cat-bars"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">App vs Product Health</div>
+      <div style="display:flex;flex-direction:column;gap:20px;padding-top:8px;">
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:12px;color:var(--muted);">App Health</span>
+            <span style="font-size:14px;font-weight:600;color:#ef4444">1.0 / 10</span>
+          </div>
+          <div style="height:8px;background:#f0ede8;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:10.0%;background:#ef4444;border-radius:4px;transition:width 0.6s ease;"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">39 reviews — App Experience</div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:12px;color:var(--muted);">Product Health</span>
+            <span style="font-size:14px;font-weight:600;color:#ef4444">3.1 / 10</span>
+          </div>
+          <div style="height:8px;background:#f0ede8;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:31.0%;background:#ef4444;border-radius:4px;transition:width 0.6s ease;"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">23 reviews — Product Quality, Ingredients & Safety, Pricing</div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+            <span style="font-size:12px;color:var(--muted);">Operations Health</span>
+            <span style="font-size:14px;font-weight:600;color:#ef4444">0.4 / 10</span>
+          </div>
+          <div style="height:8px;background:#f0ede8;border-radius:4px;overflow:hidden;">
+            <div style="height:100%;width:4.0%;background:#ef4444;border-radius:4px;transition:width 0.6s ease;"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px;">30 reviews — Customer Support, Delivery & Shipping</div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="card" style="margin-bottom:24px">
+    <div class="section-title">Category × Sentiment Heatmap</div>
+    <table class="heatmap-table" id="heatmap-table"></table>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:24px">
+    <div class="card">
+      <div class="section-title">Data Sources</div>
+      <div class="pill-row" id="src-pills"></div>
+    </div>
+    <div class="card">
+      <div class="section-title">Review Languages</div>
+      <div class="pill-row" id="lang-pills"></div>
+    </div>
+  </div>
+
+  <div class="section-title">Critical Review Feed</div>
+  <div class="review-filters" id="review-filters"></div>
+  <div class="review-grid" id="review-grid"></div>
+
+</div>
+
+<div class="footer">
+  <span>Confidential — Wellbeing Nutrition Brand Health Report</span>
+  <span>Generated by Mragy · September 03, 2026</span>
+</div>
+
+<script>
+const CAT_ITEMS = [{"cat": "App Experience", "count": 39, "pct": 31}, {"cat": "Product Efficacy", "count": 19, "pct": 15}, {"cat": "Customer Support", "count": 16, "pct": 13}, {"cat": "Delivery & Shipping", "count": 14, "pct": 11}, {"cat": "Other", "count": 13, "pct": 10}, {"cat": "Ingredients & Safety", "count": 11, "pct": 9}, {"cat": "Pricing & Value", "count": 10, "pct": 8}, {"cat": "Fake Reviews", "count": 2, "pct": 2}];
+const SENT_DATA = [{"label": "Positive", "value": 14, "color": "#22c55e"}, {"label": "Negative", "value": 65, "color": "#ef4444"}, {"label": "Neutral", "value": 9, "color": "#94a3b8"}, {"label": "Mixed", "value": 8, "color": "#f59e0b"}];
+const SRC_DATA  = [{"label": "PlayStore", "value": 85}, {"label": "Reddit", "value": 39}];
+const LANG_DATA = [{"label": "English", "value": 112}, {"label": "Hinglish", "value": 11}, {"label": "Mixed/Hindi/Marathi", "value": 1}];
+const REVIEWS   = [{"category": "App Experience", "sentiment": "Mixed", "source": "PlayStore", "text": "The app is good. But there is one problem. App should have atleast 2 choices for freebie selection. Better give creatine or any other protein sample than Shilajit. In a recent sale, I wanted to order whey protein n some supplements but I saw the freebie is Shilajit and I didn't place the order \ud83d\ude12. Ho", "evidence": "App good but should have atleast 2 freebie choices", "language": "Hinglish", "date": "2026-08-21", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "worst app ever if you want to buy wellbeing nutrition products it's better to order from Flipkart or Amazon rather than their original site", "evidence": "Worst app ever, better to order from Flipkart or Amazon", "language": "English", "date": "2026-07-13", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "the most useless terrible app of all time, takes your information wrong, there's no immediate help, almost like no help it's so delayed, their delivery services are the worst. doesn't even call you once and return the package on their own, customer support is a joke. such a waste of money and resour", "evidence": "Useless app, takes information wrong, worst delivery, no help", "language": "English", "date": "2026-06-01", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "Product Efficacy", "sentiment": "Mixed", "source": "Reddit", "text": "wellbeing nutrition melts strips vs regular pills honest comparison Diet switched from regular b12 and melatonin capsules to wellbeing nutrition melts strips about 3 months ago mainly for travel convenience. strips dissolve on your tongue in 15 seconds without water which is useful on flights or in ", "evidence": "Sleep melatonin strips work faster than capsules before", "language": "English", "date": "2026-09-02", "url": "https://reddit.com/r/AskFitnessIndia/comments/1w5ctoy/wellbeing_nutrition_melts_strips_vs_regular_pills/"}, {"category": "Product Efficacy", "sentiment": "Negative", "source": "Reddit", "text": "Quality dip in wellbeing nutrition whey Has anyone else felt a drastic drop in quality of wellbeing nutrition isolate whey protein?\n\n  \nSome issues I noticed with a recent batch:\n\n  \nAltered Scoop Size: Instead of the standard 75ml black scoop, this pack arrived with a 90ml white scoop.\n\nPowder Dens", "evidence": "Drastic drop in quality whey protein tastes stale", "language": "English", "date": "2026-08-31", "url": "https://reddit.com/r/Fitness_India/comments/1w3m9p4/quality_dip_in_wellbeing_nutrition_whey/"}, {"category": "Product Efficacy", "sentiment": "Mixed", "source": "Reddit", "text": "Does anyone actually have any good experience with Voy all in one dutasteride capsules? 21 male, noticed thinning at around 19 years old  \nSo I\u2019m 11 months into this treatment, which contains 0.5mg dut, 2.5mg minoxidil and 10mg biotin.   \nIt was working at first, I mean, really working. At month 4 I", "evidence": "Working at first, really working. Progression halted, reverted back", "language": "English", "date": "2026-09-02", "url": "https://reddit.com/r/tressless/comments/1w5pp8f/does_anyone_actually_have_any_good_experience/"}, {"category": "Customer Support", "sentiment": "Negative", "source": "PlayStore", "text": "My experience has been quite poor. Once you place an order, you can't cancel it or change the address. Their customer service representatives are unavailable and don't reply to emails or WhatsApp messages.", "evidence": "Can't cancel order, customer service unavailable, no email response", "language": "English", "date": "2026-06-17", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "Customer Support", "sentiment": "Negative", "source": "PlayStore", "text": "pathetic customer service experience and trust me I have requested order modification just after 5 minutes of placing order and they didn't respond to my request and they dispatched what was not requested and they told as its dispatched we can't modify. very poor customer experience I SUGGEST AVOID ", "evidence": "Requested modification within 5 minutes, didn't respond, dispatched wrong", "language": "English", "date": "2026-05-27", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "Customer Support", "sentiment": "Mixed", "source": "PlayStore", "text": "After proper explanation of the situation Abid from support agreed to replace the wrong product. Abid followed up in picking up and delivering the correct product hence revising the rating for Abid efforts. Original comments Not a trust worthy company. What they promise they don't deliver. On top of", "evidence": "Abid agreed to replace wrong product", "language": "English", "date": "2026-04-27", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "Delivery & Shipping", "sentiment": "Negative", "source": "PlayStore", "text": "It has been almost a month since I ordered the collagen powder. You keep making excuses\u2014claiming the address is wrong or that the delivery agent can't reach the location. Other delivery agents don't get lost; did your agent come from abroad? If you aren't going to deliver the product, at least issue", "evidence": "Almost a month, address wrong, delivery agent can't reach", "language": "English", "date": "2026-08-05", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "Delivery & Shipping", "sentiment": "Negative", "source": "PlayStore", "text": "worst company 12 days since they took money and yet to deliver they send via xpressbees which is by far the third rated shipping partner which a cartel will chose for smuggling than delivering to customers. absolutely pathetic company that cheaps out with horrible shipping and logistics company. the", "evidence": "12 days, xpressbees third rated, took 10k yet to deliver", "language": "English", "date": "2026-08-04", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "Delivery & Shipping", "sentiment": "Negative", "source": "PlayStore", "text": "so I ordered a product around a week back and it is still not delivered. Though I get a message everyday that my order is out for delivery but it never reaches me and they give random reasons for that which are not true i.e. my contact number is wrong or the delivery person could not contact me. But", "evidence": "Message everyday out for delivery, never reaches, random reasons", "language": "English", "date": "2026-07-19", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}, {"category": "Ingredients & Safety", "sentiment": "Mixed", "source": "Reddit", "text": "I bought a mock mill because I\u2019ve been hyper-fixated on ancient grains and.. I\u2019m so disappointed in the U.S\u2019s food system. I grew up poor and uneducated about health and nutrition, and most meals were boxed/canned foods, the cheapest stuff you could find at a dollar tree, and we never ate vegetables", "evidence": "disappointed in food system grew up poor uneducated", "language": "English", "date": "2026-09-02", "url": "https://reddit.com/r/HomeMilledFlour/comments/1w5fsen/i_bought_a_mock_mill_because_ive_been/"}, {"category": "Ingredients & Safety", "sentiment": "Negative", "source": "PlayStore", "text": "I ordered supplements from Wellbeing Nutrition, expecting to receive a premium product. Instead, I opened the bottle and found RAJMA (kidney beans)! Seriously? Is this some kind of prank? I trusted this brand with my health, and they couldn't even ensure basic quality control. If they can't differen", "evidence": "opened bottle found RAJMA kidney beans instead", "language": "English", "date": "2025-02-07", "url": "https://play.google.com/store/apps/details?id=com.coffye.pjfzfc"}];
+const HEATMAP   = [{"cat": "App Experience", "Positive": 13, "Negative": 77, "Neutral": 3, "Mixed": 5}, {"cat": "Product Efficacy", "Positive": 26, "Negative": 11, "Neutral": 16, "Mixed": 11}, {"cat": "Customer Support", "Positive": 12, "Negative": 75, "Neutral": 0, "Mixed": 12}, {"cat": "Delivery & Shipping", "Positive": 7, "Negative": 86, "Neutral": 0, "Mixed": 0}, {"cat": "Other", "Positive": 0, "Negative": 0, "Neutral": 0, "Mixed": 0}, {"cat": "Ingredients & Safety", "Positive": 9, "Negative": 9, "Neutral": 36, "Mixed": 9}, {"cat": "Pricing & Value", "Positive": 0, "Negative": 70, "Neutral": 10, "Mixed": 10}, {"cat": "Fake Reviews", "Positive": 0, "Negative": 50, "Neutral": 0, "Mixed": 0}];
+const TOTAL     = 124;
+
+function toggleActionPlan() {
+  const panel = document.getElementById('apPanel');
+  const btn   = document.querySelector('.ap-btn');
+  panel.classList.toggle('open');
+  btn.innerHTML = panel.classList.contains('open')
+    ? '<span>✕</span> Close Action Plan'
+    : '<span>⚡</span> Get Action Plan';
+}
+
+const barsEl = document.getElementById('cat-bars');
+const maxCat = CAT_ITEMS[0]?.count || 1;
+CAT_ITEMS.forEach(d => {
+  barsEl.innerHTML += `<div class="cat-row">
+    <div class="cat-label" title="${d.cat}">${d.cat}</div>
+    <div class="cat-track"><div class="cat-bar" style="width:${Math.round(d.count/maxCat*100)}%"></div></div>
+    <div class="cat-count">${d.count}</div>
+  </div>`;
+});
+
+
+
+(function() {
+  const table = document.getElementById('heatmap-table');
+  const sents = ['Positive','Negative','Neutral','Mixed'];
+  const colors = {
+    Positive: ['#f0fdf4','#dcfce7','#bbf7d0','#86efac','#4ade80'],
+    Negative: ['#fff5f5','#fee2e2','#fecaca','#fca5a5','#f87171'],
+    Neutral:  ['#f8fafc','#f1f5f9','#e2e8f0','#cbd5e1','#94a3b8'],
+    Mixed:    ['#fffbeb','#fef3c7','#fde68a','#fcd34d','#fbbf24'],
+  };
+  let html = '<tr><th style="text-align:left">Category</th>';
+  sents.forEach(s => html += `<th>${s}</th>`);
+  html += '</tr>';
+  HEATMAP.forEach(row => {
+    html += `<tr><td class="cat-td">${row.cat}</td>`;
+    sents.forEach(s => {
+      const v = row[s] || 0;
+      const idx = Math.min(4, Math.floor(v/25));
+      const bg = colors[s][idx];
+      html += `<td>${v > 0 ? `<span class="hm-cell" style="background:${bg}">${v}%</span>` : ''}</td>`;
+    });
+    html += '</tr>';
+  });
+  table.innerHTML = html;
+})();
+
+SRC_DATA.forEach(d => {
+  document.getElementById('src-pills').innerHTML += `<div class="pill"><div class="pill-label">${d.label}</div><div class="pill-val">${d.value}</div></div>`;
+});
+LANG_DATA.forEach(d => {
+  document.getElementById('lang-pills').innerHTML += `<div class="pill"><div class="pill-label">${d.label}</div><div class="pill-val">${d.value}</div></div>`;
+});
+
+const cats = ['All', ...new Set(REVIEWS.map(r => r.category))];
+const filters = document.getElementById('review-filters');
+const grid = document.getElementById('review-grid');
+cats.forEach((cat, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn' + (i === 0 ? ' active' : '');
+  btn.textContent = cat;
+  btn.onclick = () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.review-card').forEach(card => {
+      card.classList.toggle('hidden', cat !== 'All' && card.dataset.cat !== cat);
+    });
+  };
+  filters.appendChild(btn);
+});
+REVIEWS.forEach(r => {
+  grid.innerHTML += `<div class="review-card" data-cat="${r.category}">
+    <div class="review-header">
+      <div class="review-cat">${r.category}</div>
+      <div class="review-source">${r.source}</div>
+    </div>
+    <div class="review-text">${r.text}</div>
+    ${r.evidence ? `<div class="review-evidence">"${r.evidence}"</div>` : ''}
+    <div class="review-meta">
+      <span class="sent-badge sent-${r.sentiment}">${r.sentiment}</span>
+      ${r.language !== 'English' ? `<span class="lang-badge">${r.language}</span>` : ''}
+
+      ${r.url ? `<a href="${r.url}" target="_blank" style="font-size:10px;color:var(--teal);margin-left:auto;text-decoration:none;">View →</a>` : `<span style="font-size:10px;color:var(--muted);margin-left:auto">${r.date}</span>`}
+    </div>
+  </div>`;
+});
+</script>
+
+<!-- ── ANALYTICAL LAYER ── inject before </body> ── -->
+
+<style>
+.trend-wrap { position:relative; height:220px; }
+.kw-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.kw-card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:16px; }
+.kw-card-title { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--accent); font-weight:600; margin-bottom:12px; }
+.kw-row { display:flex; align-items:center; gap:8px; margin-bottom:7px; }
+.kw-word { font-size:12px; width:110px; flex-shrink:0; }
+.kw-track { flex:1; height:5px; background:#f0ede8; border-radius:3px; overflow:hidden; }
+.kw-bar { height:100%; background:#ef4444; border-radius:3px; opacity:0.7; }
+.kw-count { font-size:11px; color:var(--muted); width:24px; text-align:right; }
+</style>
+
+<div class="body" style="padding-top:0">
+  <div class="card" style="margin-bottom:24px">
+    <div class="section-title">Sentiment Trend (Weekly)</div>
+    <div class="trend-wrap">
+      <canvas id="trendChart"></canvas>
+    </div>
+  </div>
+
+  <div class="section-title">Top Complaint Keywords by Category</div>
+  <div class="kw-grid" id="kw-grid"></div>
+</div>
+
+
+<div class="body" style="padding-top:0">
+  <div class="card" style="margin-bottom:24px;border-top:2px solid #ef4444;">
+    <div class="section-title" style="color:#ef4444;">⚠ Claim vs Reality Gap</div>
+    <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Marketing claims being directly challenged by customer reviews.</p>
+    
+            <div style="border:1px solid var(--border);border-left:3px solid #ef4444;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <div style="font-size:11px;font-weight:600;color:#ef4444;letter-spacing:1px;text-transform:uppercase;">High severity</div>
+                <div style="font-size:10px;color:var(--muted);">6 reviews</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
+                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Responsive and reliable customer support"</div>
+                </div>
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
+                  <div style="font-size:13px;color:#4a4540;">Multiple customers report unavailable, unresponsive support teams ignoring emails, WhatsApp messages and order modification requests</div>
+                </div>
+              </div>
+              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"customer service representatives are unavailable and don't reply to emails or WhatsApp"</div>
+            </div>
+            <div style="border:1px solid var(--border);border-left:3px solid #ef4444;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <div style="font-size:11px;font-weight:600;color:#ef4444;letter-spacing:1px;text-transform:uppercase;">High severity</div>
+                <div style="font-size:10px;color:var(--muted);">5 reviews</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
+                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Fast and reliable delivery"</div>
+                </div>
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
+                  <div style="font-size:13px;color:#4a4540;">Multiple customers report orders not delivered for weeks, fake delivery attempts, and poor logistics partners</div>
+                </div>
+              </div>
+              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"12 days since they took money and yet to deliver"</div>
+            </div>
+            <div style="border:1px solid var(--border);border-left:3px solid #ef4444;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <div style="font-size:11px;font-weight:600;color:#ef4444;letter-spacing:1px;text-transform:uppercase;">High severity</div>
+                <div style="font-size:10px;color:var(--muted);">1 reviews</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
+                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Consistent premium product quality"</div>
+                </div>
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
+                  <div style="font-size:13px;color:#4a4540;">Customers report drastic quality drops in whey protein including altered scoop sizes in recent batches</div>
+                </div>
+              </div>
+              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"felt a drastic drop in quality of wellbeing nutrition isolate whey protein"</div>
+            </div>
+            <div style="border:1px solid var(--border);border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <div style="font-size:11px;font-weight:600;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Medium severity</div>
+                <div style="font-size:10px;color:var(--muted);">3 reviews</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
+                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Seamless app and shopping experience"</div>
+                </div>
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
+                  <div style="font-size:13px;color:#4a4540;">Customers report app pricing higher than website, no order cancellation option, and incorrect information handling</div>
+                </div>
+              </div>
+              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"the price's are more in app than in website"</div>
+            </div>
+            <div style="border:1px solid var(--border);border-left:3px solid #ef4444;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <div style="font-size:11px;font-weight:600;color:#ef4444;letter-spacing:1px;text-transform:uppercase;">High severity</div>
+                <div style="font-size:10px;color:var(--muted);">3 reviews</div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
+                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Accurate and fulfilled order delivery"</div>
+                </div>
+                <div>
+                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
+                  <div style="font-size:13px;color:#4a4540;">Customers received wrong or incomplete orders with no resolution from support teams</div>
+                </div>
+              </div>
+              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"they delivered just complimentary protein sachet and original order is not delivered"</div>
+            </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const labels   = ["2024-10-07", "2024-10-14", "2024-11-18", "2024-12-09", "2025-01-27", "2025-02-03", "2025-02-17", "2025-02-24", "2025-03-03", "2025-03-10", "2025-03-17", "2025-04-28", "2025-05-05", "2025-05-26", "2025-06-02", "2025-06-16", "2025-06-30", "2025-07-07", "2025-07-14", "2025-07-21", "2025-07-28", "2025-08-04", "2025-08-18", "2025-08-25", "2025-09-01", "2025-09-15", "2025-09-22", "2025-09-29", "2025-10-06", "2025-10-13", "2025-10-20", "2025-11-03", "2025-11-10", "2025-11-17", "2025-12-08", "2025-12-29", "2026-01-19", "2026-01-26", "2026-02-09", "2026-02-16", "2026-03-09", "2026-03-16", "2026-03-30", "2026-04-06", "2026-04-13", "2026-04-20", "2026-04-27", "2026-05-04", "2026-05-25", "2026-06-01", "2026-06-15", "2026-06-29", "2026-07-06", "2026-07-13", "2026-08-03", "2026-08-17", "2026-08-24", "2026-08-31"];
+  const posData  = [NaN, 100.0, 50.0, 0.0, 0.0, 0.0, NaN, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 100.0, 0.0, 0.0, 50.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 50.0, 33.3, 0.0, 0.0, 0.0, 0.0, 33.3, 0.0, 0.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 50.0, 0.0, NaN, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 13.3];
+  const negData  = [NaN, 0.0, 50.0, 100.0, 100.0, 100.0, NaN, 100.0, 100.0, 0.0, 100.0, 100.0, 100.0, 100.0, 0.0, 100.0, 100.0, 25.0, 100.0, 100.0, 50.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 50.0, 66.7, 100.0, 100.0, 100.0, 66.7, 66.7, 100.0, 100.0, 100.0, 100.0, 50.0, 100.0, 100.0, 0.0, 100.0, 100.0, 100.0, 50.0, 50.0, NaN, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 0.0, 0.0, 13.3];
+  const canvas   = document.getElementById('trendChart');
+  const ctx      = canvas.getContext('2d');
+
+  const W = canvas.parentElement.offsetWidth || 800;
+  const H = 200;
+  canvas.width  = W;
+  canvas.height = H;
+
+  const pad = { top:20, right:20, bottom:40, left:40 };
+  const cw  = W - pad.left - pad.right;
+  const ch  = H - pad.top  - pad.bottom;
+  const n   = labels.length;
+  const xStep = cw / (n - 1 || 1);
+
+  function xPos(i)   { return pad.left + i * xStep; }
+  function yPos(val) { return pad.top + ch - (val / 100) * ch; }
+
+  // Grid lines
+  ctx.strokeStyle = "#f0ede8";
+  ctx.lineWidth = 1;
+  [0,25,50,75,100].forEach(v => {
+    ctx.beginPath();
+    ctx.moveTo(pad.left, yPos(v));
+    ctx.lineTo(pad.left + cw, yPos(v));
+    ctx.stroke();
+    ctx.fillStyle = "#94a3b8";
+    ctx.font = "10px DM Sans, sans-serif";
+    ctx.textAlign = "right";
+    ctx.fillText(v + "%", pad.left - 6, yPos(v) + 3);
+  });
+
+  // Lines
+  function drawLine(data, color) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth   = 2;
+    ctx.lineJoin    = "round";
+    data.forEach((v, i) => {
+      i === 0 ? ctx.moveTo(xPos(i), yPos(v)) : ctx.lineTo(xPos(i), yPos(v));
+    });
+    ctx.stroke();
+    // Dots
+    data.forEach((v, i) => {
+      ctx.beginPath();
+      ctx.arc(xPos(i), yPos(v), 3, 0, 2*Math.PI);
+      ctx.fillStyle = color;
+      ctx.fill();
+    });
+  }
+
+  drawLine(negData, "#ef4444");
+  drawLine(posData, "#22c55e");
+
+  // X labels
+  ctx.fillStyle   = "#94a3b8";
+  ctx.font        = "9px DM Sans, sans-serif";
+  ctx.textAlign   = "center";
+  labels.forEach((l, i) => {
+    if (n <= 8 || i % 2 === 0)
+      ctx.fillText(l.slice(5), xPos(i), H - 8);
+  });
+
+  // Legend
+  [["Positive","#22c55e"],["Negative","#ef4444"]].forEach(([label,color], i) => {
+    const lx = pad.left + i * 100;
+    ctx.beginPath(); ctx.arc(lx + 6, 10, 4, 0, 2*Math.PI);
+    ctx.fillStyle = color; ctx.fill();
+    ctx.fillStyle = "#4a4540";
+    ctx.font = "10px DM Sans, sans-serif";
+    ctx.textAlign = "left";
+    ctx.fillText(label, lx + 14, 14);
+  });
+})();
+
+(function() {
+  const keywords = {"Product Efficacy": [{"word": "wellbeing", "count": 5}, {"word": "nutrition", "count": 5}, {"word": "strips", "count": 5}, {"word": "months", "count": 4}, {"word": "water", "count": 4}, {"word": "regular", "count": 3}, {"word": "capsules", "count": 3}, {"word": "whey", "count": 3}], "Ingredients & Safety": [{"word": "because", "count": 3}, {"word": "health", "count": 2}, {"word": "nutrition", "count": 2}, {"word": "bread", "count": 2}, {"word": "cooking", "count": 2}, {"word": "supplements", "count": 2}, {"word": "mock", "count": 1}, {"word": "mill", "count": 1}], "Pricing & Value": [{"word": "discount", "count": 4}, {"word": "offer", "count": 2}, {"word": "work", "count": 2}, {"word": "expensive", "count": 2}, {"word": "people", "count": 2}, {"word": "website", "count": 1}, {"word": "scammers", "count": 1}, {"word": "check", "count": 1}], "App Experience": [{"word": "cart", "count": 12}, {"word": "payment", "count": 6}, {"word": "option", "count": 4}, {"word": "offers", "count": 4}, {"word": "work", "count": 4}, {"word": "freebie", "count": 3}, {"word": "shilajit", "count": 3}, {"word": "waste", "count": 3}], "Delivery & Shipping": [{"word": "address", "count": 5}, {"word": "cancel", "count": 5}, {"word": "deliver", "count": 4}, {"word": "wellbeing", "count": 4}, {"word": "wrong", "count": 3}, {"word": "issue", "count": 3}, {"word": "pathetic", "count": 3}, {"word": "person", "count": 3}], "Customer Support": [{"word": "reply", "count": 5}, {"word": "cancel", "count": 4}, {"word": "email", "count": 4}, {"word": "discount", "count": 4}, {"word": "whatsapp", "count": 3}, {"word": "respond", "count": 3}, {"word": "abid", "count": 3}, {"word": "wellbeing", "count": 3}]};
+  const grid     = document.getElementById('kw-grid');
+  Object.entries(keywords).forEach(([cat, words]) => {
+    if (!words.length) return;
+    const maxCount = words[0].count || 1;
+    let rows = words.map(w => `
+      <div class="kw-row">
+        <div class="kw-word">${w.word}</div>
+        <div class="kw-track"><div class="kw-bar" style="width:${Math.round(w.count/maxCount*100)}%"></div></div>
+        <div class="kw-count">${w.count}</div>
+      </div>`).join('');
+    grid.innerHTML += `
+      <div class="kw-card">
+        <div class="kw-card-title">${cat}</div>
+        ${rows}
+      </div>`;
+  });
+})();
+
+
+</script>
+
+</body>
+</html>
