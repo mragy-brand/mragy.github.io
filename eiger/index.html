@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Eiger — Brand Health Report · Mragy</title>
+<title>eiger — Brand Health Report · Mragy</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -126,26 +126,17 @@
 <div class="header">
   <div class="header-left">
     <div class="logo">Mragy · Brand Health Report</div>
-    <div class="brand-name">Eiger</div>
-    <div class="header-meta">219 reviews · September 04, 2026 · Reddit + Play Store</div>
+    <div class="brand-name">eiger</div>
+    <div class="header-meta">195 reviews · September 04, 2026 · Reddit + Play Store</div>
   </div>
   <div class="header-right">
     <button class="ap-btn" onclick="toggleActionPlan()">
       <span>⚡</span> Get Action Plan
     </button>
-    <div style="display:flex;gap:0;align-items:stretch;border-left:1px solid var(--border);padding-left:32px;">
-      <div style="text-align:center;padding:0 24px;border-right:1px solid var(--border);">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Overall</div>
-        <div style="font-family:'DM Serif Display',serif;font-size:52px;color:#22c55e;line-height:1;">10</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:4px;">/ 10</div>
-        <div style="font-size:10px;margin-top:6px;color:#22c55e;">↑ 4.0 above avg for your category brands</div>
-      </div>
-      <div style="text-align:center;padding:0 24px;border-right:1px solid var(--border);"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">App</div><div style="font-family:'DM Serif Display',serif;font-size:36px;color:#22c55e;line-height:1;">10</div><div style="font-size:11px;color:var(--muted);margin-top:4px;">/ 10</div></div>
-      <div style="text-align:center;padding:0 24px;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Product</div><div style="font-family:'DM Serif Display',serif;font-size:36px;color:#22c55e;line-height:1;">9.8</div><div style="font-size:11px;color:var(--muted);margin-top:4px;">/ 10</div></div>
+    <div class="health-wrap">
+      <div class="health-score">10</div>
+      <div class="health-label">Health Score / 10</div>
     </div>
-
-  </div>
-
   </div>
 </div>
 
@@ -159,8 +150,8 @@
       <div class="ap-section-label">Biggest Pain Right Now</div>
       <div class="ap-urgency">HIGH URGENCY</div>
       <div class="ap-pain-cat">App Experience</div>
-      <div class="ap-pain-why">With 129 reviews and recurring issues like force-close, session timeouts, frequent forced updates, and login failures, the app is actively blocking purchases at the top of the funnel.</div>
-      <div class="ap-pain-impact">A broken app for a D2C brand means direct revenue loss — every login failure or crash is an abandoned purchase that goes to a competitor or offline store.</div>
+      <div class="ap-pain-why">The app is plagued with bugs and login issues, frustrating users.</div>
+      <div class="ap-pain-impact">If not fixed, customer retention will decline as users abandon the app.</div>
     </div>
     <div>
       <div class="ap-section-label">Top 3 Actions This Week</div>
@@ -168,33 +159,11 @@
         <div class="ap-action">
           <div class="ap-action-num">1</div>
           <div class="ap-action-body">
-            <div class="ap-action-title">Fix the 3 critical app bugs blocking user sessions and logins</div>
-            <div class="ap-action-detail">Assign your mobile dev team this week to patch the session timeout loop, force-close on browse, and phone number verification failure — these three issues appear repeatedly across reviews. Ship a hotfix before the next full release cycle.</div>
+            <div class="ap-action-title">Fix app bugs and improve login functionality</div>
+            <div class="ap-action-detail">Prioritize a development sprint this week to address the critical bugs causing app crashes and login failures.</div>
             <div class="ap-action-tags">
-              <span class="ap-tag" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">Effort: Medium</span>
+              <span class="ap-tag" style="color:#ef4444;border-color:#ef444420;background:#ef444410">Effort: High</span>
               <span class="ap-tag" style="color:#ef4444;border-color:#ef444420;background:#ef444410">Impact: High</span>
-            </div>
-          </div>
-        </div>
-        <div class="ap-action">
-          <div class="ap-action-num">2</div>
-          <div class="ap-action-body">
-            <div class="ap-action-title">Enforce a mandatory update frequency cap and background-compatible versioning</div>
-            <div class="ap-action-detail">Users report being forced to update up to 3x per week — implement a grace period of at least 14 days before blocking older app versions, and shift to background updates so Eiger's app stops punishing loyal users for simply opening it.</div>
-            <div class="ap-action-tags">
-              <span class="ap-tag" style="color:#22c55e;border-color:#22c55e20;background:#22c55e10">Effort: Low</span>
-              <span class="ap-tag" style="color:#ef4444;border-color:#ef444420;background:#ef444410">Impact: High</span>
-            </div>
-          </div>
-        </div>
-        <div class="ap-action">
-          <div class="ap-action-num">3</div>
-          <div class="ap-action-body">
-            <div class="ap-action-title">Audit order fulfilment SLA and activate same-day dispatch notifications for online orders</div>
-            <div class="ap-action-detail">A customer waited 3+ days post-order with no courier handoff — set an internal SLA of 24-hour dispatch for all app orders and trigger an automatic WhatsApp notification the moment the order is handed to the courier, directly addressing the delivery silence complaint.</div>
-            <div class="ap-action-tags">
-              <span class="ap-tag" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">Effort: Medium</span>
-              <span class="ap-tag" style="color:#f59e0b;border-color:#f59e0b20;background:#f59e0b10">Impact: Medium</span>
             </div>
           </div>
         </div>
@@ -204,18 +173,18 @@
       
         <div class="ap-pri-review">
           <div class="ap-pri-cat">App Experience</div>
-          <div class="ap-pri-text">"Tiba-tiba force close. Baru login sudah 'Sesi Anda telah habis' berkali-kali."</div>
-          <div class="ap-pri-why">Session and crash issues are conversion killers — users cannot stay logged in long enough to complete a purchase.</div>
+          <div class="ap-pri-text">"Tiba-tiba force close. Dan selalu log out sendiri."</div>
+          <div class="ap-pri-why">This indicates a severe usability issue that drives customers away.</div>
         </div>
         <div class="ap-pri-review">
-          <div class="ap-pri-cat">Customer Support</div>
-          <div class="ap-pri-text">"1 juta melayang untuk store abal2 — tas tidak ada di satpam, lobi, mana pun."</div>
-          <div class="ap-pri-why">A lost Rp 1,000,000 order with no resolution is a public trust grenade — one viral screenshot ends brand credibility.</div>
+          <div class="ap-pri-cat">App Experience</div>
+          <div class="ap-pri-text">"Tidak bisa login.. juga di websitenya gak bisa checkout."</div>
+          <div class="ap-pri-why">Login and checkout failures directly impact sales and user satisfaction.</div>
         </div>
         <div class="ap-pri-review">
-          <div class="ap-pri-cat">Delivery & Shipping</div>
-          <div class="ap-pri-text">"order tgl 1 juni, tgl 4 juni barang masih belum di kirim ke kurir."</div>
-          <div class="ap-pri-why">3-day pre-shipment silence signals broken ops and drives chargebacks and negative word-of-mouth for Eiger's online channel.</div>
+          <div class="ap-pri-cat">App Experience</div>
+          <div class="ap-pri-text">"app gagal. eror loading"</div>
+          <div class="ap-pri-why">Frequent errors deter users from engaging with the app.</div>
         </div>
     </div>
   </div>
@@ -228,26 +197,26 @@
   <div class="grid-4">
     <div class="card stat-pos">
       <div class="card-title">Positive</div>
-      <div class="card-value" style="color:var(--pos)">72%</div>
-      <div class="card-sub">158 reviews</div>
+      <div class="card-value" style="color:var(--pos)">75%</div>
+      <div class="card-sub">147 reviews</div>
       <div class="card-delta" style="color:#94a3b8"></div>
     </div>
     <div class="card stat-neg">
       <div class="card-title">Negative</div>
-      <div class="card-value" style="color:var(--neg)">11%</div>
-      <div class="card-sub">25 reviews</div>
+      <div class="card-value" style="color:var(--neg)">12%</div>
+      <div class="card-sub">23 reviews</div>
       <div class="card-delta" style="color:#94a3b8"></div>
     </div>
     <div class="card stat-neu">
       <div class="card-title">Neutral</div>
-      <div class="card-value" style="color:var(--neu)">10%</div>
-      <div class="card-sub">22 reviews</div>
+      <div class="card-value" style="color:var(--neu)">2%</div>
+      <div class="card-sub">3 reviews</div>
       <div class="card-delta" style="color:#94a3b8"></div>
     </div>
     <div class="card stat-mix">
       <div class="card-title">Mixed</div>
       <div class="card-value" style="color:var(--warn)">6%</div>
-      <div class="card-sub">14 reviews</div>
+      <div class="card-sub">11 reviews</div>
       <div class="card-delta" style="color:#94a3b8"></div>
     </div>
   </div>
@@ -258,43 +227,12 @@
       <div id="cat-bars"></div>
     </div>
     <div class="card">
-      <div class="section-title">App vs Product Health</div>
-      <div style="display:flex;flex-direction:column;gap:20px;padding-top:8px;">
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-            <span style="font-size:12px;color:var(--muted);">App Health</span>
-            <span style="font-size:14px;font-weight:600;color:#22c55e">10 / 10</span>
-          </div>
-          <div style="height:8px;background:#f0ede8;border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:100%;background:#22c55e;border-radius:4px;transition:width 0.6s ease;"></div>
-          </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px;">129 reviews — App Experience</div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-            <span style="font-size:12px;color:var(--muted);">Product Health</span>
-            <span style="font-size:14px;font-weight:600;color:#22c55e">9.8 / 10</span>
-          </div>
-          <div style="height:8px;background:#f0ede8;border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:100%;background:#22c55e;border-radius:4px;transition:width 0.6s ease;"></div>
-          </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px;">47 reviews — Product Quality, Ingredients & Safety, Pricing</div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
-            <span style="font-size:12px;color:var(--muted);">Operations Health</span>
-            <span style="font-size:14px;font-weight:600;color:#22c55e">9.6 / 10</span>
-          </div>
-          <div style="height:8px;background:#f0ede8;border-radius:4px;overflow:hidden;">
-            <div style="height:100%;width:96.0%;background:#22c55e;border-radius:4px;transition:width 0.6s ease;"></div>
-          </div>
-          <div style="font-size:11px;color:var(--muted);margin-top:4px;">13 reviews — Customer Support, Delivery & Shipping</div>
-        </div>
+      <div class="section-title">Sentiment Distribution</div>
+      <div class="donut-wrap">
+        <canvas id="donutChart" width="160" height="160"></canvas>
+        <div class="donut-legend" id="donut-legend"></div>
       </div>
     </div>
-
-
-
   </div>
 
   <div class="card" style="margin-bottom:24px">
@@ -320,18 +258,18 @@
 </div>
 
 <div class="footer">
-  <span>Confidential — Eiger Brand Health Report</span>
+  <span>Confidential — eiger Brand Health Report</span>
   <span>Generated by Mragy · September 04, 2026</span>
 </div>
 
 <script>
-const CAT_ITEMS = [{"cat": "App Experience", "count": 129, "pct": 59}, {"cat": "Product Quality", "count": 33, "pct": 15}, {"cat": "Other", "count": 30, "pct": 14}, {"cat": "Pricing & Value", "count": 12, "pct": 5}, {"cat": "Customer Support", "count": 7, "pct": 3}, {"cat": "Delivery & Shipping", "count": 6, "pct": 3}, {"cat": "Packaging", "count": 1, "pct": 0}, {"cat": "Fake Reviews", "count": 1, "pct": 0}];
-const SENT_DATA = [{"label": "Positive", "value": 158, "color": "#22c55e"}, {"label": "Negative", "value": 25, "color": "#ef4444"}, {"label": "Neutral", "value": 22, "color": "#94a3b8"}, {"label": "Mixed", "value": 14, "color": "#f59e0b"}];
-const SRC_DATA  = [{"label": "PlayStore", "value": 189}, {"label": "Reddit", "value": 30}];
-const LANG_DATA = [{"label": "Indonesian", "value": 129}, {"label": "English", "value": 56}, {"label": "Hinglish", "value": 18}, {"label": "Hindi", "value": 12}, {"label": "Spanish", "value": 1}, {"label": "Id", "value": 1}, {"label": "Italian", "value": 1}, {"label": "Tagalog", "value": 1}];
-const REVIEWS   = [{"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "aplikasi lemot... ndak usah kebanyakan notifikasi giliran dibuka lemotnya ber menit menit", "evidence": "aplikasi lemot... ndak usah kebanyakan notifikasi", "language": "Hinglish", "date": "2026-08-22", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "aplikasi nya oke, tapi tiap kali harus di update kalo ga update ga bisa di buka. update apps nya seminggu bisa 3x. repot.", "evidence": "tiap kali harus di update kalo ga update ga bisa di buka", "language": "Hinglish", "date": "2026-06-07", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "update update terus tapi aplikasi sering error", "evidence": "aplikasi sering error", "language": "Indonesian", "date": "2026-02-16", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Product Quality", "sentiment": "Negative", "source": "Reddit", "text": "Heimplanet tent took some beating in storm - how to fix So we went to Switzerland to the Eiger Nordwand and suddenly some really bad weather came up. We had to release all air from the tent as we could no longer hold it against the wind and it ripped loose from the ground hooks.   Some of the fabric", "evidence": "Some of the fabric ripped apart", "language": "English", "date": "2026-09-01", "url": "https://reddit.com/r/camping/comments/1w4du4d/heimplanet_tent_took_some_beating_in_storm_how_to/"}, {"category": "Product Quality", "sentiment": "Negative", "source": "PlayStore", "text": "bad experience saat cek di toko terdekat ternyata tidak bisa dipilih, dan stok juga ga banyak", "evidence": "stok juga ga banyak", "language": "Indonesian", "date": "2026-05-15", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Product Quality", "sentiment": "Negative", "source": "PlayStore", "text": "mau beli jaket ga ada keterangan polar atau engga. tolong deskripsi produk diperjelas lg", "evidence": "tolong deskripsi produk diperjelas lg", "language": "Indonesian", "date": "2025-12-25", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Other", "sentiment": "Negative", "source": "Reddit", "text": "Polyphony Digital Destroys The Classical Tracks Polyphony Digital keeps ruining the appearance and atmosphere of classic tracks \u2014 and nobody talks about it. So I will.\n\nFebruary 21st, 2023. When Grand Valley was added to Gran Turismo 7, I saw the update trailer and honestly thought it was a brand\u2011ne", "evidence": "Grand Valley was turned into a boring, empty, soulless", "language": "English", "date": "2026-09-01", "url": "https://reddit.com/r/granturismo/comments/1w4fhub/polyphony_digital_destroys_the_classical_tracks/"}, {"category": "Other", "sentiment": "Mixed", "source": "Reddit", "text": "The Eiger Sanction Clint Eastwood starred, directed and did many of his own stunts. Filmed on locations in Monument Valley, Zurich and on the Eigerwand it\u2019s a fun 70s action flick. It is pretty dated in its dialog with many stereotypes and attitudes towards women and race that haven\u2019t aged well. On ", "evidence": "Pretty dated in its dialog with many stereotypes but good humour", "language": "English", "date": "2026-08-03", "url": "https://reddit.com/r/70smovies/comments/1vekjny/the_eiger_sanction/"}, {"category": "Other", "sentiment": "Mixed", "source": "Reddit", "text": "Feedback on the physics update - case by case, mostly road cars I'm not going to say if it's a good update or a bad one, that wouldn't get us anywhere, it needs nuance. Given how big the changes are, I'll start with the general stuff that applies to every car, then go case by case. I've got 7 cars I", "evidence": "I was surprised in about 90% of cases", "language": "English", "date": "2026-08-21", "url": "https://reddit.com/r/granturismo/comments/1vu90eb/feedback_on_the_physics_update_case_by_case/"}, {"category": "Pricing & Value", "sentiment": "Negative", "source": "PlayStore", "text": "aku gadapet diskon ultah :((", "evidence": "aku gadapet diskon ultah :((", "language": "Indonesian", "date": "2025-08-21", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Pricing & Value", "sentiment": "Mixed", "source": "PlayStore", "text": "membantu bgt utk cek produk baru, voucher\u00b2, stok yg tersedia di berbagai store eiger. cukup byk promonya tp kok masih lebih murah yg di marketplace yaa?", "evidence": "kok masih lebih murah yg di marketplace", "language": "Indonesian", "date": "2025-07-01", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Pricing & Value", "sentiment": "Negative", "source": "PlayStore", "text": "good aps, but more expensive than toped", "evidence": "more expensive than toped", "language": "English", "date": "2025-06-27", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Customer Support", "sentiment": "Negative", "source": "PlayStore", "text": "Trus di mantla tas saya, di satpam ngga ada, di lobi ngga ada, padahal saya sudah tulis di note pembelian, WA kalau sudah sampai. 1 juta melayang untuk store abal2", "evidence": "1 juta melayang untuk store abal2", "language": "Indonesian", "date": "2026-02-14", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Customer Support", "sentiment": "Negative", "source": "PlayStore", "text": "Memudahkan banget buat belanja eiger, cek model & ketersdiaan item yg pengen dibeli", "evidence": "Informasi produk kurang jelas terkait size", "language": "Indonesian", "date": "2024-06-01", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Delivery & Shipping", "sentiment": "Negative", "source": "PlayStore", "text": "order via aplikasi tgl 1 juni, sekarang tgl 4 juni barang masih belum di kirim ke kurir.. hedeuuhh.. kapan nyampe nya ini barang. staff nya kagak gercep nerima pesanan online..", "evidence": "barang masih belum di kirim ke kurir", "language": "Indonesian", "date": "2026-06-04", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Delivery & Shipping", "sentiment": "Mixed", "source": "PlayStore", "text": "aplikadi nya okeee.... biasanya ke store klo blanja.... nyobain blanja di aplikasi... semoga cepat sampai...", "evidence": "semoga cepat sampai", "language": "Indonesian", "date": "2025-07-12", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}, {"category": "Delivery & Shipping", "sentiment": "Mixed", "source": "PlayStore", "text": "Appnya cukup mudah, cuma katalog banyak yg kosong. Opsi pengirimannya juga menjangkau daerah", "evidence": "katalog banyak yg kosong. Opsi pengirimannya juga", "language": "Indonesian", "date": "2025-06-20", "url": "https://play.google.com/store/apps/details?id=com.eiger.eigeradventureapp"}];
-const HEATMAP   = [{"cat": "App Experience", "Positive": 83, "Negative": 10, "Neutral": 2, "Mixed": 5}, {"cat": "Product Quality", "Positive": 79, "Negative": 15, "Neutral": 3, "Mixed": 3}, {"cat": "Other", "Positive": 27, "Negative": 3, "Neutral": 60, "Mixed": 10}, {"cat": "Pricing & Value", "Positive": 75, "Negative": 17, "Neutral": 0, "Mixed": 8}, {"cat": "Customer Support", "Positive": 71, "Negative": 29, "Neutral": 0, "Mixed": 0}, {"cat": "Delivery & Shipping", "Positive": 50, "Negative": 17, "Neutral": 0, "Mixed": 33}, {"cat": "Packaging", "Positive": 0, "Negative": 0, "Neutral": 0, "Mixed": 100}, {"cat": "Fake Reviews", "Positive": 0, "Negative": 100, "Neutral": 0, "Mixed": 0}];
-const TOTAL     = 219;
+const CAT_ITEMS = [{"cat": "App Experience", "count": 129, "pct": 66}, {"cat": "Product Quality", "count": 32, "pct": 16}, {"cat": "Pricing & Value", "count": 12, "pct": 6}, {"cat": "Other", "count": 8, "pct": 4}, {"cat": "Customer Support", "count": 7, "pct": 4}, {"cat": "Delivery & Shipping", "count": 6, "pct": 3}, {"cat": "Packaging", "count": 1, "pct": 1}];
+const SENT_DATA = [{"label": "Positive", "value": 147, "color": "#22c55e"}, {"label": "Negative", "value": 23, "color": "#ef4444"}, {"label": "Neutral", "value": 3, "color": "#94a3b8"}, {"label": "Mixed", "value": 11, "color": "#f59e0b"}];
+const SRC_DATA  = [{"label": "PlayStore", "value": 189}, {"label": "Reddit", "value": 6}];
+const LANG_DATA = [{"label": "Indonesian", "value": 129}, {"label": "English", "value": 34}, {"label": "Hinglish", "value": 18}, {"label": "Hindi", "value": 12}, {"label": "Spanish", "value": 1}, {"label": "id", "value": 1}];
+const REVIEWS   = [{"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "aplikasi lemot... ndak usah kebanyakan notifikasi giliran dibuka lemotnya ber menit menit", "evidence": "aplikasi lemot... ndak usah kebanyakan notifikasi", "language": "Hinglish", "date": "2026-08-22"}, {"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "aplikasi nya oke, tapi tiap kali harus di update kalo ga update ga bisa di buka. update apps nya seminggu bisa 3x. repot.", "evidence": "tiap kali harus di update kalo ga update ga bisa di buka", "language": "Hinglish", "date": "2026-06-07"}, {"category": "App Experience", "sentiment": "Negative", "source": "PlayStore", "text": "update update terus tapi aplikasi sering error", "evidence": "aplikasi sering error", "language": "Indonesian", "date": "2026-02-16"}, {"category": "Product Quality", "sentiment": "Negative", "source": "Reddit", "text": "Heimplanet tent took some beating in storm - how to fix So we went to Switzerland to the Eiger Nordwand and suddenly some really bad weather came up. We had to release all air from the tent as we could no longer hold it against the wind and it ripped loose from the ground hooks.   Some of the fabric", "evidence": "Some of the fabric ripped apart", "language": "English", "date": "2026-09-01"}, {"category": "Product Quality", "sentiment": "Negative", "source": "PlayStore", "text": "bad experience saat cek di toko terdekat ternyata tidak bisa dipilih, dan stok juga ga banyak", "evidence": "stok juga ga banyak", "language": "Indonesian", "date": "2026-05-15"}, {"category": "Product Quality", "sentiment": "Negative", "source": "PlayStore", "text": "mau beli jaket ga ada keterangan polar atau engga. tolong deskripsi produk diperjelas lg", "evidence": "tolong deskripsi produk diperjelas lg", "language": "Indonesian", "date": "2025-12-25"}, {"category": "Pricing & Value", "sentiment": "Negative", "source": "PlayStore", "text": "aku gadapet diskon ultah :((", "evidence": "aku gadapet diskon ultah :((", "language": "Indonesian", "date": "2025-08-21"}, {"category": "Pricing & Value", "sentiment": "Mixed", "source": "PlayStore", "text": "membantu bgt utk cek produk baru, voucher\u00b2, stok yg tersedia di berbagai store eiger. cukup byk promonya tp kok masih lebih murah yg di marketplace yaa?", "evidence": "kok masih lebih murah yg di marketplace", "language": "Indonesian", "date": "2025-07-01"}, {"category": "Pricing & Value", "sentiment": "Negative", "source": "PlayStore", "text": "good aps, but more expensive than toped", "evidence": "more expensive than toped", "language": "English", "date": "2025-06-27"}, {"category": "Customer Support", "sentiment": "Negative", "source": "PlayStore", "text": "Trus di mantla tas saya, di satpam ngga ada, di lobi ngga ada, padahal saya sudah tulis di note pembelian, WA kalau sudah sampai. 1 juta melayang untuk store abal2", "evidence": "1 juta melayang untuk store abal2", "language": "Indonesian", "date": "2026-02-14"}, {"category": "Customer Support", "sentiment": "Negative", "source": "PlayStore", "text": "Memudahkan banget buat belanja eiger, cek model & ketersdiaan item yg pengen dibeli", "evidence": "Informasi produk kurang jelas terkait size", "language": "Indonesian", "date": "2024-06-01"}, {"category": "Delivery & Shipping", "sentiment": "Negative", "source": "PlayStore", "text": "order via aplikasi tgl 1 juni, sekarang tgl 4 juni barang masih belum di kirim ke kurir.. hedeuuhh.. kapan nyampe nya ini barang. staff nya kagak gercep nerima pesanan online..", "evidence": "barang masih belum di kirim ke kurir", "language": "Indonesian", "date": "2026-06-04"}, {"category": "Delivery & Shipping", "sentiment": "Mixed", "source": "PlayStore", "text": "aplikadi nya okeee.... biasanya ke store klo blanja.... nyobain blanja di aplikasi... semoga cepat sampai...", "evidence": "semoga cepat sampai", "language": "Indonesian", "date": "2025-07-12"}, {"category": "Delivery & Shipping", "sentiment": "Mixed", "source": "PlayStore", "text": "Appnya cukup mudah, cuma katalog banyak yg kosong. Opsi pengirimannya juga menjangkau daerah", "evidence": "katalog banyak yg kosong. Opsi pengirimannya juga", "language": "Indonesian", "date": "2025-06-20"}];
+const HEATMAP   = [{"cat": "App Experience", "Positive": 81, "Negative": 10, "Neutral": 2, "Mixed": 5}, {"cat": "Product Quality", "Positive": 81, "Negative": 16, "Neutral": 0, "Mixed": 3}, {"cat": "Pricing & Value", "Positive": 75, "Negative": 17, "Neutral": 0, "Mixed": 8}, {"cat": "Other", "Positive": 0, "Negative": 0, "Neutral": 0, "Mixed": 0}, {"cat": "Customer Support", "Positive": 71, "Negative": 29, "Neutral": 0, "Mixed": 0}, {"cat": "Delivery & Shipping", "Positive": 50, "Negative": 17, "Neutral": 0, "Mixed": 33}, {"cat": "Packaging", "Positive": 0, "Negative": 0, "Neutral": 0, "Mixed": 100}];
+const TOTAL     = 195;
 
 function toggleActionPlan() {
   const panel = document.getElementById('apPanel');
@@ -352,7 +290,33 @@ CAT_ITEMS.forEach(d => {
   </div>`;
 });
 
-
+(function() {
+  const canvas = document.getElementById('donutChart');
+  const ctx = canvas.getContext('2d');
+  const cx = 80, cy = 80, r = 60, ir = 38;
+  const total = SENT_DATA.reduce((a,b) => a + b.value, 0);
+  let angle = -Math.PI / 2;
+  SENT_DATA.forEach(d => {
+    const slice = (d.value / total) * 2 * Math.PI;
+    ctx.beginPath(); ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, r, angle, angle + slice);
+    ctx.closePath(); ctx.fillStyle = d.color; ctx.fill();
+    angle += slice;
+  });
+  ctx.beginPath(); ctx.arc(cx, cy, ir, 0, 2*Math.PI);
+  ctx.fillStyle = '#ffffff'; ctx.fill();
+  ctx.font = 'bold 18px serif'; ctx.fillStyle = '#1a1814';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(total, cx, cy);
+  const legend = document.getElementById('donut-legend');
+  SENT_DATA.forEach(d => {
+    legend.innerHTML += `<div class="legend-item">
+      <div class="legend-dot" style="background:${d.color}"></div>
+      <span>${d.label}</span>
+      <span class="legend-val">${Math.round(d.value/total*100)}%</span>
+    </div>`;
+  });
+})();
 
 (function() {
   const table = document.getElementById('heatmap-table');
@@ -413,8 +377,7 @@ REVIEWS.forEach(r => {
     <div class="review-meta">
       <span class="sent-badge sent-${r.sentiment}">${r.sentiment}</span>
       ${r.language !== 'English' ? `<span class="lang-badge">${r.language}</span>` : ''}
-
-      ${r.url ? `<a href="${r.url}" target="_blank" style="font-size:10px;color:var(--teal);margin-left:auto;text-decoration:none;">View →</a>` : `<span style="font-size:10px;color:var(--muted);margin-left:auto">${r.date}</span>`}
+      <span style="font-size:10px;color:var(--muted);margin-left:auto">${r.date}</span>
     </div>
   </div>`;
 });
@@ -446,105 +409,11 @@ REVIEWS.forEach(r => {
   <div class="kw-grid" id="kw-grid"></div>
 </div>
 
-
-<div class="body" style="padding-top:0">
-  <div class="card" style="margin-bottom:24px;border-top:2px solid #ef4444;">
-    <div class="section-title" style="color:#ef4444;">⚠ Claim vs Reality Gap</div>
-    <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Marketing claims being directly challenged by customer reviews.</p>
-    
-            <div style="border:1px solid var(--border);border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <div style="font-size:11px;font-weight:600;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Medium severity</div>
-                <div style="font-size:10px;color:var(--muted);">2 reviews</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
-                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Wide product availability and ready stock across stores"</div>
-                </div>
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
-                  <div style="font-size:13px;color:#4a4540;">Customers find limited stock and inability to select products at physical stores</div>
-                </div>
-              </div>
-              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"cek di toko terdekat ternyata tidak bisa dipilih, dan stok juga ga banyak"</div>
-            </div>
-            <div style="border:1px solid var(--border);border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <div style="font-size:11px;font-weight:600;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Medium severity</div>
-                <div style="font-size:10px;color:var(--muted);">6 reviews</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
-                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Seamless and easy-to-use app experience"</div>
-                </div>
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
-                  <div style="font-size:13px;color:#4a4540;">App frequently crashes, loads slowly, and fails to open without constant updates</div>
-                </div>
-              </div>
-              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"update update terus tapi aplikasi sering error"</div>
-            </div>
-            <div style="border:1px solid var(--border);border-left:3px solid #f59e0b;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <div style="font-size:11px;font-weight:600;color:#f59e0b;letter-spacing:1px;text-transform:uppercase;">Medium severity</div>
-                <div style="font-size:10px;color:var(--muted);">2 reviews</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
-                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Best prices and exclusive deals through the app"</div>
-                </div>
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
-                  <div style="font-size:13px;color:#4a4540;">Customers find cheaper prices on third-party marketplaces than on the official app</div>
-                </div>
-              </div>
-              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"good aps, but more expensive than toped"</div>
-            </div>
-            <div style="border:1px solid var(--border);border-left:3px solid #ef4444;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <div style="font-size:11px;font-weight:600;color:#ef4444;letter-spacing:1px;text-transform:uppercase;">High severity</div>
-                <div style="font-size:10px;color:var(--muted);">1 reviews</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
-                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Fast and reliable order fulfillment and delivery"</div>
-                </div>
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
-                  <div style="font-size:13px;color:#4a4540;">Orders remain unshipped days after placement with slow staff response</div>
-                </div>
-              </div>
-              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"order via aplikasi tgl 1 juni, sekarang tgl 4 juni barang masih belum di kirim"</div>
-            </div>
-            <div style="border:1px solid var(--border);border-left:3px solid #94a3b8;border-radius:0 8px 8px 0;padding:14px 16px;margin-bottom:12px;background:var(--surface);">
-              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
-                <div style="font-size:11px;font-weight:600;color:#94a3b8;letter-spacing:1px;text-transform:uppercase;">Low severity</div>
-                <div style="font-size:10px;color:var(--muted);">2 reviews</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Brand Claims</div>
-                  <div style="font-size:13px;font-weight:500;color:var(--text);">"Complete and detailed product catalog on the app"</div>
-                </div>
-                <div>
-                  <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Customers Say</div>
-                  <div style="font-size:13px;color:#4a4540;">Product descriptions are incomplete and catalog listings are often empty</div>
-                </div>
-              </div>
-              <div style="margin-top:8px;font-size:11px;font-style:italic;color:var(--neg);border-left:2px solid var(--neg);padding-left:8px;">"mau beli jaket ga ada keterangan polar atau engga. tolong deskripsi produk diperjelas"</div>
-            </div>
-  </div>
-</div>
-
 <script>
 (function() {
-  const labels   = ["2023-09-18", "2023-10-02", "2023-10-23", "2023-11-20", "2023-12-18", "2023-12-25", "2024-01-01", "2024-01-08", "2024-01-22", "2024-02-19", "2024-02-26", "2024-03-18", "2024-04-15", "2024-04-22", "2024-05-27", "2024-06-24", "2024-07-01", "2024-07-15", "2024-07-22", "2024-07-29", "2024-08-05", "2024-08-12", "2024-08-19", "2024-09-02", "2024-09-30", "2024-10-14", "2024-11-04", "2024-11-11", "2024-11-18", "2024-11-25", "2024-12-02", "2024-12-16", "2024-12-23", "2025-01-20", "2025-01-27", "2025-03-03", "2025-03-17", "2025-03-31", "2025-04-07", "2025-04-21", "2025-05-05", "2025-05-12", "2025-05-19", "2025-06-02", "2025-06-09", "2025-06-16", "2025-06-23", "2025-06-30", "2025-07-07", "2025-07-14", "2025-07-21", "2025-07-28", "2025-08-04", "2025-08-11", "2025-08-18", "2025-08-25", "2025-09-01", "2025-09-08", "2025-09-15", "2025-09-22", "2025-09-29", "2025-12-01", "2025-12-22", "2026-01-12", "2026-02-02", "2026-02-09", "2026-02-16", "2026-05-11", "2026-06-01", "2026-06-29", "2026-07-06", "2026-07-13", "2026-07-20", "2026-08-03", "2026-08-10", "2026-08-17", "2026-08-24", "2026-08-31"];
-  const posData  = [100.0, 100.0, 100.0, 100.0, 0.0, 0.0, 100.0, 100.0, 100.0, 0.0, 100.0, 50.0, 100.0, 100.0, 66.7, 0.0, 100.0, 100.0, 50.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 0.0, 66.7, 66.7, 50.0, 100.0, 100.0, 100.0, 100.0, 0.0, 0.0, 50.0, 100.0, 0.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 86.7, 80.0, 90.9, 88.2, 77.8, 83.3, 100.0, 100.0, 100.0, 75.0, 90.9, 100.0, 100.0, 100.0, 100.0, 66.7, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 100.0, 33.3, 33.3, 28.6, 100.0, 0.0, 50.0, 0.0];
-  const negData  = [0.0, 0.0, 0.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 50.0, 0.0, 0.0, 33.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 100.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 100.0, 100.0, 50.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 13.3, 0.0, 9.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 25.0, 9.1, 0.0, 0.0, 0.0, 0.0, 0.0, 50.0, 0.0, 100.0, 0.0, 0.0, 50.0, 100.0, 100.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 25.0, 16.7, 33.3];
+  const labels   = ["2023-09-18", "2023-10-02", "2023-10-23", "2023-11-20", "2023-12-18", "2023-12-25", "2024-01-01", "2024-01-08", "2024-01-22", "2024-02-19", "2024-02-26", "2024-03-18", "2024-04-15", "2024-04-22", "2024-05-27", "2024-06-24", "2024-07-01", "2024-07-15", "2024-07-22", "2024-07-29", "2024-08-05", "2024-08-12", "2024-08-19", "2024-09-02", "2024-09-30", "2024-10-14", "2024-11-04", "2024-11-11", "2024-11-18", "2024-11-25", "2024-12-02", "2024-12-16", "2024-12-23", "2025-01-20", "2025-01-27", "2025-03-03", "2025-03-17", "2025-03-31", "2025-04-07", "2025-04-21", "2025-05-05", "2025-05-12", "2025-05-19", "2025-06-02", "2025-06-09", "2025-06-16", "2025-06-23", "2025-06-30", "2025-07-07", "2025-07-14", "2025-07-21", "2025-07-28", "2025-08-04", "2025-08-11", "2025-08-18", "2025-08-25", "2025-09-01", "2025-09-08", "2025-09-15", "2025-09-22", "2025-09-29", "2025-12-01", "2025-12-22", "2026-01-12", "2026-02-02", "2026-02-09", "2026-02-16", "2026-05-11", "2026-06-01", "2026-07-06", "2026-07-13", "2026-07-20", "2026-08-03", "2026-08-17", "2026-08-24", "2026-08-31"];
+  const posData  = [100.0, 100.0, 100.0, 100.0, NaN, 0.0, 100.0, 100.0, 100.0, NaN, 100.0, 50.0, 100.0, 100.0, 66.7, 0.0, 100.0, 100.0, 50.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 0.0, 66.7, 66.7, 50.0, 100.0, 100.0, 100.0, 100.0, 0.0, 0.0, 50.0, 100.0, 0.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 86.7, 80.0, 90.9, 87.5, 77.8, 83.3, 100.0, 100.0, 100.0, 75.0, 90.9, 100.0, 100.0, 100.0, 100.0, 66.7, 0.0, NaN, 0.0, NaN, 0.0, 0.0, 0.0, 0.0, 0.0, 100.0, 100.0, NaN, NaN, 0.0, NaN, 0.0];
+  const negData  = [0.0, 0.0, 0.0, 0.0, NaN, 100.0, 0.0, 0.0, 0.0, NaN, 0.0, 50.0, 0.0, 0.0, 33.3, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 100.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0, 0.0, 100.0, 100.0, 50.0, 0.0, 100.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 13.3, 0.0, 9.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 25.0, 9.1, 0.0, 0.0, 0.0, 0.0, 0.0, 50.0, NaN, 100.0, NaN, 0.0, 50.0, 100.0, 100.0, 100.0, 0.0, 0.0, NaN, NaN, 100.0, NaN, 100.0];
   const canvas   = document.getElementById('trendChart');
   const ctx      = canvas.getContext('2d');
 
@@ -638,8 +507,6 @@ REVIEWS.forEach(r => {
       </div>`;
   });
 })();
-
-
 </script>
 
 </body>
